@@ -2,13 +2,13 @@ class ProductManager {
 
     constructor(){ 
         this.products= [] ;
-        this.id = 0 ;
+        this.id = this.products.length ;
         
     }
 
     addProduct(code,title,description,price,thumbail,stock = 1){
     
-        this.id++;
+        
 
         const product = { 
             id: this.id,
@@ -24,9 +24,10 @@ class ProductManager {
 
         if(!productFilter){ 
             this.products.push(product);
-            return console.log(`Producto creado con id ${this.id}, code ${product.code}`)
+            this.id++;
+            return `Producto creado con id ${this.id}, code ${product.code}`
         } else{ 
-            console.log(`El producto con code ${product.code} ya existe`)
+            return `El producto con code ${product.code} ya existe`
         }
 
     
@@ -44,10 +45,9 @@ class ProductManager {
         const prodById = this.products.find(prod=> prod.id === id)
         
         if(prodById){ 
-            console.log(`Producto con id ${id}`)
-            console.log(prodById)
+           return `Producto con id ${id} y ${prodById}`
         } else{
-            console.log(`Not Found id ${id}`)
+            return `Not Found id ${id}`
         }
 
     }
@@ -85,5 +85,5 @@ prueba.addProduct(codePrubea2,titlePrueba2,descPrueba2,precioPrueba2,imgPrueba2,
 prueba.addProduct(codePrubea3,titlePrueba3,descPrueba3,precioPrueba3,imgPrueba3)
 
 console.log( prueba.getProducts())
-prueba.getProductById(1) 
-
+console.log(prueba.getProductById(1))
+console.log(prueba.getProductById(4))
